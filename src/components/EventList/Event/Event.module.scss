@@ -2,6 +2,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
   .image {
     flex: 1;
     img {
@@ -16,11 +17,13 @@
     flex-direction: column;
     justify-content: space-evenly;
     width: 100%;
-    .type {
-      font-size: 0.7rem;
+    .buttons {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
       button {
         background: white;
         cursor: pointer;
@@ -28,6 +31,9 @@
         width: 1.5rem;
         border-radius: 5px;
       }
+    }
+    .type {
+      font-size: 0.7rem;
     }
     .name {
       font-size: 1.2rem;

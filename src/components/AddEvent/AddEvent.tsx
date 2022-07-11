@@ -13,13 +13,21 @@ import getMonth from "date-fns/getMonth";
 import range from "lodash/range";
 
 const AddEvent: FC = memo(() => {
-  const { control, register, reset, handleSubmit } = useForm<IEvent>();
+  const {
+    control,
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IEvent>();
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<IEvent> = (formData) => {
     dispatch(
       addNewEvent({
-        ...formData,
+        name: formData.name,
+        image: formData.image,
         id: uuidv4(),
+        type: switcher,
         date: moment(startDate).format("YYYY-MM-DD"),
       })
     );
@@ -59,9 +67,8 @@ const AddEvent: FC = memo(() => {
             <input
               {...register("type", { required: true })}
               type="radio"
-              value="Event"
               id="event"
-              defaultChecked
+              value="Event"
               checked={switcher === "Event"}
               onChange={() => setSwitcher("Event")}
             />
@@ -71,8 +78,8 @@ const AddEvent: FC = memo(() => {
             <input
               {...register("type", { required: true })}
               type="radio"
-              value="Birthday"
               id="birthday"
+              value="Birthday"
               checked={switcher === "Birthday"}
               onChange={() => setSwitcher("Birthday")}
             />
@@ -137,7 +144,6 @@ const AddEvent: FC = memo(() => {
               onChange={(e) => setStartDate(e)}
               placeholderText="Select date"
               dateFormat="dd/MM/yyyy"
-              closeOnScroll
             />
           )}
         />
@@ -147,6 +153,13 @@ const AddEvent: FC = memo(() => {
           type={"text"}
         />
         <button className={styles.button}>Add</button>
+        {(errors?.name?.type === "required" ||
+          errors?.type?.type === "required") && (
+          <p className={styles.error}>The fields are required</p>
+        )}
+        {errors?.name?.type === "maxLength" && (
+          <p className={styles.error}>Name cannot exceed 30 characters</p>
+        )}
       </form>
     </div>
   );
