@@ -1,0 +1,13 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  .switch {
+    transition: var(--transition);
+    &:hover {
+      color: var(--color-primary-variant);
+      cursor: pointer;
+      transform: rotate(20deg) scale(1.02);
+    }
+  }
+}

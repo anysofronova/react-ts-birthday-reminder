@@ -1,0 +1,92 @@
+// ========== Font ==========
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500&display=swap");
+
+// ========== Variables ==========
+:root {
+  --transition: all 400ms ease;
+
+  --container-width-lg: 75vw;
+  --container-width-md: 86vw;
+  --container-width-sm: 90vw;
+}
+html[data-theme="dark"] {
+  --color-primary: #ae858d;
+  --color-bg: #000000;
+  --color-text: #fff;
+  --color-light: rgba(255, 255, 255, 0.6);
+  --color-primary-opacity: rgba(215, 158, 169, 0.8);
+  --color-primary-variant: #ffa600;
+}
+html[data-theme="light"] {
+  --color-primary: #ae858d;
+  --color-bg: #d7c7ca;
+  --color-text: #000000;
+  --color-light: rgba(49, 44, 44, 0.6);
+  --color-primary-opacity: rgb(215, 158, 169);
+  --color-primary-variant: #ffa600;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 100vw;
+}
+
+.App {
+  padding: 1rem 2rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 50%;
+  background-color: var(--color-primary);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-datepicker__triangle {
+  display: none;
+}
+
+// ========== Media Queries ==========
+@media screen and (max-width: 1024px) {
+  .container {
+    max-width: 75%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .container {
+    max-width: 100%;
+  }
+}
