@@ -4,26 +4,18 @@
 // ========== Variables ==========
 :root {
   --transition: all 400ms ease;
-
-  --container-width-lg: 75vw;
-  --container-width-md: 86vw;
-  --container-width-sm: 90vw;
 }
 html[data-theme="dark"] {
   --color-primary: #ae858d;
   --color-bg: #000000;
   --color-text: #fff;
   --color-light: rgba(255, 255, 255, 0.6);
-  --color-primary-opacity: rgba(215, 158, 169, 0.8);
-  --color-primary-variant: #ffa600;
 }
 html[data-theme="light"] {
   --color-primary: #ae858d;
   --color-bg: #d7c7ca;
   --color-text: #000000;
   --color-light: rgba(49, 44, 44, 0.6);
-  --color-primary-opacity: rgb(215, 158, 169);
-  --color-primary-variant: #ffa600;
 }
 
 * {

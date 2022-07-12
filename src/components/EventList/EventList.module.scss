@@ -7,17 +7,22 @@
   }
   .title {
     width: 100%;
-    .sort {
-      display: flex;
-      gap: 0.6rem;
-      align-items: center;
-      padding: 0.4rem 0;
-      span {
-        padding: 0.1rem 0.5rem;
-        border-radius: 5px;
-        background-color: var(--color-bg);
-        cursor: pointer;
-      }
+  }
+  .sort {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.4rem 0;
+    width: 100%;
+    span {
+      padding: 0.1rem 0.5rem;
+      border-radius: 5px;
+      background-color: var(--color-bg);
+      cursor: pointer;
+    }
+    .active {
+      background-color: var(--color-text);
+      color: var(--color-bg);
     }
   }
 }
@@ -25,14 +30,12 @@
 // ========== Media Queries ==========
 @media screen and (max-width: 480px) {
   .eventList {
-    .title {
-      .sort {
-        white-space: nowrap;
-        font-size: 0.9rem;
-        gap: 0.2rem;
-        span {
-          font-size: 0.8rem;
-        }
+    .sort {
+      white-space: nowrap;
+      font-size: 0.9rem;
+      gap: 0.2rem;
+      span {
+        font-size: 0.8rem;
       }
     }
   }
