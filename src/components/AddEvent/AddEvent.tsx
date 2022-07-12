@@ -92,22 +92,8 @@ const AddEvent: FC = memo(() => {
           defaultValue={moment(new Date()).format("YYYY-MM-DD")}
           render={() => (
             <DatePicker
-              renderCustomHeader={({
-                date,
-                changeYear,
-                changeMonth,
-                decreaseMonth,
-                increaseMonth,
-                prevMonthButtonDisabled,
-                nextMonthButtonDisabled,
-              }) => (
+              renderCustomHeader={({ date, changeYear, changeMonth }) => (
                 <div className={styles.calendar} style={{}}>
-                  <button
-                    onClick={decreaseMonth}
-                    disabled={prevMonthButtonDisabled}
-                  >
-                    {"<"}
-                  </button>
                   <select
                     value={getYear(date)}
                     onChange={({ target: { value } }) => changeYear(+value)}
@@ -131,13 +117,6 @@ const AddEvent: FC = memo(() => {
                       </option>
                     ))}
                   </select>
-
-                  <button
-                    onClick={increaseMonth}
-                    disabled={nextMonthButtonDisabled}
-                  >
-                    {">"}
-                  </button>
                 </div>
               )}
               selected={startDate}

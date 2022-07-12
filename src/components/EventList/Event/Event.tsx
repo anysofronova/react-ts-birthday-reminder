@@ -19,7 +19,7 @@ const Event: FC<IEvent> = ({
   const dispatch = useAppDispatch();
 
   return (
-    <div className={clsx("container", styles.event)}>
+    <div className={clsx(styles.event)}>
       <div className={styles.image}>
         <img src={image || placeholder} alt="Event" />
       </div>
@@ -31,9 +31,7 @@ const Event: FC<IEvent> = ({
         <div className={styles.name}>
           {name} – {moment(date).format("MMMM Do YYYY")}
         </div>
-        <div className={styles.date}>
-          {daysBefore} {years !== -1 && "days before"}
-        </div>
+        <div className={styles.date}>{daysBefore}</div>
         {type === "Birthday" && <div>Will be {years} years old</div>}
       </div>
     </div>

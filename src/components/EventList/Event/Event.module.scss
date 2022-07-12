@@ -3,6 +3,12 @@
   justify-content: flex-start;
   align-items: center;
   position: relative;
+  width: 100%;
+  display: flex;
+  background-color: var(--color-light);
+  padding: 1rem;
+  border-radius: 10px;
+  color: var(--color-bg);
   .image {
     flex: 1;
     img {
