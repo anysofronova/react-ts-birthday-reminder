@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/react-ts-birthday-reminder/static/css/main.b5d3395e.css",
+    "main.js": "/react-ts-birthday-reminder/static/js/main.37f52235.js",
+    "static/js/787.3acc7a1d.chunk.js": "/react-ts-birthday-reminder/static/js/787.3acc7a1d.chunk.js",
+    "static/media/imgPlaceholder.jpeg": "/react-ts-birthday-reminder/static/media/imgPlaceholder.0692b4324e7d4d80c543.jpeg",
+    "index.html": "/react-ts-birthday-reminder/index.html",
+    "main.b5d3395e.css.map": "/react-ts-birthday-reminder/static/css/main.b5d3395e.css.map",
+    "main.37f52235.js.map": "/react-ts-birthday-reminder/static/js/main.37f52235.js.map",
+    "787.3acc7a1d.chunk.js.map": "/react-ts-birthday-reminder/static/js/787.3acc7a1d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b5d3395e.css",
+    "static/js/main.37f52235.js"
+  ]
+}
