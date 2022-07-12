@@ -6,39 +6,43 @@ import { setSearchOption } from "../../store/mainSlice";
 import { filters, sorts } from "../../data/FiltersAndSors";
 
 const EventList = () => {
-  const { sortedList } = useAppSelector((state) => state.mainSlice);
+  const { sortedList, filter, sort } = useAppSelector(
+    (state) => state.mainSlice
+  );
   const dispatch = useAppDispatch();
   return (
     <div className={clsx(styles.eventList, "container")}>
+      <div className={styles.sort}>
+        Sort by:
+        {sorts.map((i) => (
+          <span
+            key={i}
+            className={clsx(sort === i && styles.active)}
+            onClick={() =>
+              dispatch(setSearchOption({ option: "sort", value: i }))
+            }
+          >
+            {i}
+          </span>
+        ))}
+      </div>
+      <div className={styles.sort}>
+        Filter by:
+        {filters.map((i) => (
+          <span
+            key={i}
+            className={clsx(filter === i && styles.active)}
+            onClick={() =>
+              dispatch(setSearchOption({ option: "filter", value: i }))
+            }
+          >
+            {i}
+          </span>
+        ))}
+      </div>
       {sortedList.length > 0 && (
         <div className={styles.title}>
           <h2>Your Event List:</h2>
-          <div className={styles.sort}>
-            Sort by:
-            {sorts.map((i) => (
-              <span
-                key={i}
-                onClick={() =>
-                  dispatch(setSearchOption({ option: "sort", value: i }))
-                }
-              >
-                {i}
-              </span>
-            ))}
-          </div>
-          <div className={styles.sort}>
-            Filter by:
-            {filters.map((i) => (
-              <span
-                key={i}
-                onClick={() =>
-                  dispatch(setSearchOption({ option: "filter", value: i }))
-                }
-              >
-                {i}
-              </span>
-            ))}
-          </div>
         </div>
       )}
       {sortedList.length < 1 && <h2 className={styles.title}>No Event!</h2>}

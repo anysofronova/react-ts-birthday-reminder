@@ -6,8 +6,8 @@ import { calculateDaysBefore } from "../utils/calculateDaysBefore";
 const initialState: MainState = {
   eventsList: [],
   sortedList: [],
-  sort: "title",
-  filter: "all",
+  sort: "Title",
+  filter: "All",
 };
 
 export const mainSlice = createSlice({
@@ -22,6 +22,19 @@ export const mainSlice = createSlice({
     deleteEvent: (state, action: PayloadAction<string>) => {
       state.eventsList = state.eventsList.filter(
         (i) => i.id !== action.payload
+      );
+      mainSlice.caseReducers.setSortedList(state);
+    },
+    updateEvent: (state, action: PayloadAction<IEvent>) => {
+      const { daysBefore, years } = calculateDaysBefore({ ...action.payload });
+      state.eventsList = state.eventsList.map((i) =>
+        i.id === action.payload.id
+          ? {
+              ...action.payload,
+              daysBefore,
+              years,
+            }
+          : { ...i }
       );
       mainSlice.caseReducers.setSortedList(state);
     },
@@ -50,5 +63,6 @@ export const mainSlice = createSlice({
   },
 });
 
-export const { addNewEvent, deleteEvent, setSearchOption } = mainSlice.actions;
+export const { addNewEvent, deleteEvent, setSearchOption, updateEvent } =
+  mainSlice.actions;
 export default mainSlice.reducer;
