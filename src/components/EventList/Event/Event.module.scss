@@ -9,6 +9,7 @@
   padding: 1rem;
   border-radius: 10px;
   color: var(--color-bg);
+  gap: 0.5rem;
   .image {
     flex: 1;
     img {
@@ -47,6 +48,20 @@
     }
     .date {
       font-size: 1.1rem;
+    }
+  }
+}
+
+// ========== Media Queries ==========
+@media screen and (max-width: 480px) {
+  .event {
+    .info {
+      .name {
+        font-size: 0.9rem;
+      }
+      .date {
+        font-size: 0.8rem;
+      }
     }
   }
 }

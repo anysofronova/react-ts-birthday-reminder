@@ -32,7 +32,9 @@ const Event: FC<IEvent> = ({
           {name} – {moment(date).format("MMMM Do YYYY")}
         </div>
         <div className={styles.date}>{daysBefore}</div>
-        {type === "Birthday" && <div>Will be {years} years old</div>}
+        {type === "Birthday" && (
+          <div className={styles.date}>Will be {years} years old</div>
+        )}
       </div>
     </div>
   );
