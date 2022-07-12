@@ -4,4 +4,6 @@ export interface IEvent {
   date: string;
   image: string;
   type: "Birthday" | "Event";
+  years?: number;
+  daysBefore?: number | string;
 }

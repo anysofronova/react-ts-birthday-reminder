@@ -11,3 +11,15 @@
     }
   }
 }
+
+// ========== Media Queries ==========
+@media screen and (max-width: 768px) {
+  .header {
+    .switch {
+      &:hover {
+        color: var(--color-text);
+        transform: none;
+      }
+    }
+  }
+}
