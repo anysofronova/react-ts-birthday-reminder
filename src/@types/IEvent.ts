@@ -4,6 +4,7 @@ export interface IEvent {
   date: string;
   image: string;
   type: "Birthday" | "Event";
+  priority: 0 | 1 | 2;
   years?: number;
   daysBefore?: number | string;
 }

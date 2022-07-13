@@ -16,13 +16,23 @@ const Event: FC<IEvent> = ({
   id,
   daysBefore,
   years,
+  priority,
 }) => {
   const dispatch = useAppDispatch();
   const [editMode, setEditMode] = useState<boolean>(false);
   return (
     <>
       {!editMode && (
-        <div className={clsx(styles.event)}>
+        <div
+          className={clsx(
+            styles.event,
+            priority === 2
+              ? styles.event2
+              : priority === 1
+              ? styles.event1
+              : styles.event0
+          )}
+        >
           <div className={styles.image}>
             <img src={image || placeholder} alt="Event" />
           </div>
@@ -47,7 +57,7 @@ const Event: FC<IEvent> = ({
           <Form
             buttonText={"Update"}
             dispatchName={updateEvent}
-            eventInfo={{ name, type, image, id, date }}
+            eventInfo={{ name, type, image, id, date, priority }}
             setEditMode={setEditMode}
           />
         </div>
