@@ -12,17 +12,17 @@ export const calculateDaysBefore = ({ date, type }: IEvent) => {
   } else {
     event = new Date(+splitDate[0], +splitDate[1] - 1, +splitDate[2]);
   }
-  if (
-    today.getDay() === event.getDay() &&
-    today.getMonth() === event.getMonth() &&
-    today.getDay() === event.getDay()
-  ) {
-    return { daysBefore: "Today", years: -1 };
-  }
 
-  if (type === "Event" && today.getTime() > new Date(date).getTime()) {
+  if (
+    today.getFullYear() === event.getFullYear() &&
+    today.getMonth() === event.getMonth() &&
+    today.getDate() === event.getDate()
+  )
+    return { daysBefore: "Today", years: -1 };
+
+  if (type === "Event" && today.getTime() > new Date(date).getTime())
     return { daysBefore: "Sorry, you're late", years: -1 };
-  }
+
   let delta = Math.abs(event.getTime() - today.getTime()) / 1000;
   const days = Math.floor(delta / 86400);
   delta -= days * 86400;

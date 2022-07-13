@@ -44,6 +44,7 @@ const Form: FC<IFormProps> = ({
         image: formData.image,
         id: eventInfo?.id || uuidv4(),
         type: switcher,
+        priority: priority,
         date: moment(startDate).format("YYYY-MM-DD"),
       })
     );
@@ -52,10 +53,13 @@ const Form: FC<IFormProps> = ({
     }
     reset();
   };
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(
+    eventInfo ? new Date(eventInfo.date) : new Date()
+  );
   const [switcher, setSwitcher] = useState<"Event" | "Birthday">(
     eventInfo?.type || "Event"
   );
+  const [priority, setPriority] = useState<0 | 1 | 2>(eventInfo?.priority || 2);
   const years = range(1900, getYear(new Date()) + 10, 1);
   const months = [
     "January",
@@ -82,22 +86,22 @@ const Form: FC<IFormProps> = ({
         placeholder={"Name"}
       />
       <div className={styles.switch}>
-        <label htmlFor={`${eventInfo?.id}1`}>
+        <label htmlFor={`${eventInfo?.id}01`}>
           <input
             {...register("type", { required: true })}
             type="radio"
-            id={`${eventInfo?.id}1`}
+            id={`${eventInfo?.id}01`}
             value="Event"
             checked={switcher === "Event"}
             onChange={() => setSwitcher("Event")}
           />
           Event
         </label>
-        <label htmlFor={`${eventInfo?.id}2`}>
+        <label htmlFor={`${eventInfo?.id}02`}>
           <input
             {...register("type", { required: true })}
             type="radio"
-            id={`${eventInfo?.id}2`}
+            id={`${eventInfo?.id}02`}
             value="Birthday"
             checked={switcher === "Birthday"}
             onChange={() => setSwitcher("Birthday")}
@@ -145,12 +149,55 @@ const Form: FC<IFormProps> = ({
           />
         )}
       />
+      <div className={styles.priority}>
+        <label htmlFor={`${eventInfo?.id}11`}>
+          <input
+            {...register("priority", { required: true })}
+            type="radio"
+            id={`${eventInfo?.id}11`}
+            value="Event"
+            checked={priority === 2}
+            className={styles.priority2}
+            onChange={() => setPriority(2)}
+          />
+          Important
+        </label>
+        <label htmlFor={`${eventInfo?.id}12`}>
+          <input
+            {...register("priority", { required: true })}
+            type="radio"
+            id={`${eventInfo?.id}12`}
+            value="Birthday"
+            checked={priority === 1}
+            onChange={() => setPriority(1)}
+            className={styles.priority1}
+          />
+          Moderately
+        </label>
+        <label htmlFor={`${eventInfo?.id}13`}>
+          <input
+            {...register("priority", { required: true })}
+            type="radio"
+            id={`${eventInfo?.id}13`}
+            value="0"
+            checked={priority === 0}
+            onChange={() => setPriority(0)}
+            className={styles.priority0}
+          />
+          Unimportant
+        </label>
+      </div>
       <input
         {...register("image")}
         placeholder={"Enter link to Photo"}
         type={"text"}
       />
       <button className={styles.button}>{buttonText}</button>
+      {setEditMode && (
+        <button className={styles.button} onClick={() => setEditMode(false)}>
+          Cancel
+        </button>
+      )}
       {(errors?.name?.type === "required" ||
         errors?.type?.type === "required") && (
         <p className={styles.error}>The fields are required</p>

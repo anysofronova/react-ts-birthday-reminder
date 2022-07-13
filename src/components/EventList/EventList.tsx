@@ -56,6 +56,7 @@ const EventList = () => {
           type={i.type}
           daysBefore={i.daysBefore}
           years={i.years}
+          priority={i.priority}
         />
       ))}
     </div>

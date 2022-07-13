@@ -52,6 +52,16 @@
   }
 }
 
+.event2 {
+  box-shadow: rgba(255, 0, 0, 0.4) 0 5px 40px;
+}
+.event1 {
+  box-shadow: rgb(234, 211, 68) 0 5px 40px;
+}
+.event0 {
+  box-shadow: rgba(0, 51, 255, 0.4) 0 5px 40px;
+}
+
 // ========== Media Queries ==========
 @media screen and (max-width: 480px) {
   .event {
