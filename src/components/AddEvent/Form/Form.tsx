@@ -52,7 +52,9 @@ const Form: FC<IFormProps> = ({
     }
     reset();
   };
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(
+    eventInfo ? new Date(eventInfo.date) : new Date()
+  );
   const [switcher, setSwitcher] = useState<"Event" | "Birthday">(
     eventInfo?.type || "Event"
   );
@@ -151,6 +153,11 @@ const Form: FC<IFormProps> = ({
         type={"text"}
       />
       <button className={styles.button}>{buttonText}</button>
+      {setEditMode && (
+        <button className={styles.button} onClick={() => setEditMode(false)}>
+          Cancel
+        </button>
+      )}
       {(errors?.name?.type === "required" ||
         errors?.type?.type === "required") && (
         <p className={styles.error}>The fields are required</p>
