@@ -46,6 +46,8 @@ const Form: FC<IFormProps> = ({
         type: switcher,
         priority: priority,
         date: moment(startDate).format("YYYY-MM-DD"),
+        daysBefore: [-1],
+        years: -1,
       })
     );
     if (setEditMode) {

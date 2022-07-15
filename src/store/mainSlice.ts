@@ -56,7 +56,7 @@ export const mainSlice = createSlice({
         )
         .sort((a, b) => {
           return state.sort === "Date"
-            ? +new Date(a.date) - +new Date(b.date)
+            ? a.daysBefore[0] - b.daysBefore[0]
             : state.sort === "Title"
             ? a.name.localeCompare(b.name)
             : b.priority - a.priority;
