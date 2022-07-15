@@ -18,10 +18,10 @@ export const calculateDaysBefore = ({ date, type }: IEvent) => {
     today.getMonth() === event.getMonth() &&
     today.getDate() === event.getDate()
   )
-    return { daysBefore: "Today", years: -1 };
+    return { daysBefore: [0], years: -1 };
 
   if (type === "Event" && today.getTime() > new Date(date).getTime())
-    return { daysBefore: "Sorry, you're late", years: -1 };
+    return { daysBefore: [-1], years: -1 };
 
   let delta = Math.abs(event.getTime() - today.getTime()) / 1000;
   const days = Math.floor(delta / 86400);
@@ -29,7 +29,7 @@ export const calculateDaysBefore = ({ date, type }: IEvent) => {
   const hours = Math.floor(delta / 3600) % 24;
 
   return {
-    daysBefore: `${days} d ${hours} h before`,
+    daysBefore: [days, hours],
     years: +moment().diff(moment(date, "YYYYMMDD"), "years") + 1,
   };
 };

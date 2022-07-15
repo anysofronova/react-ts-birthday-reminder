@@ -5,6 +5,6 @@ export interface IEvent {
   image: string;
   type: "Birthday" | "Event";
   priority: 0 | 1 | 2;
-  years?: number;
-  daysBefore?: number | string;
+  years: number;
+  daysBefore: number[];
 }

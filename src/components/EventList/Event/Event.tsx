@@ -45,7 +45,13 @@ const Event: FC<IEvent> = ({
             <div className={styles.name}>
               {name} – {moment(date).format("MMMM Do YYYY")}
             </div>
-            <div className={styles.date}>{daysBefore}</div>
+            <div className={styles.date}>
+              {daysBefore.length > 1
+                ? `${daysBefore[0]}d ${daysBefore[1]}h before`
+                : daysBefore[0] === 0
+                ? "Today"
+                : "Sorry you're late"}
+            </div>
             {type === "Birthday" && (
               <div className={styles.date}>Will be {years} years old</div>
             )}
@@ -57,7 +63,16 @@ const Event: FC<IEvent> = ({
           <Form
             buttonText={"Update"}
             dispatchName={updateEvent}
-            eventInfo={{ name, type, image, id, date, priority }}
+            eventInfo={{
+              name,
+              type,
+              image,
+              id,
+              date,
+              priority,
+              daysBefore,
+              years,
+            }}
             setEditMode={setEditMode}
           />
         </div>
