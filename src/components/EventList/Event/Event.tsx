@@ -4,7 +4,11 @@ import { IEvent } from "../../../@types/IEvent";
 import placeholder from "../../../assets/imgPlaceholder.jpeg";
 import { clsx } from "clsx";
 import { useAppDispatch } from "../../../hooks/redux";
-import { deleteEvent, updateEvent } from "../../../store/mainSlice";
+import {
+  deleteEvent,
+  updateDaysBefore,
+  updateEvent,
+} from "../../../store/mainSlice";
 import moment from "moment";
 import Form from "../../AddEvent/Form/Form";
 
@@ -20,6 +24,7 @@ const Event: FC<IEvent> = ({
 }) => {
   const dispatch = useAppDispatch();
   const [editMode, setEditMode] = useState<boolean>(false);
+  setInterval(() => dispatch(updateDaysBefore()), 60000);
   return (
     <>
       {!editMode && (

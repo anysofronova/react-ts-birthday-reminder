@@ -62,9 +62,22 @@ export const mainSlice = createSlice({
             : b.priority - a.priority;
         });
     },
+    updateDaysBefore: (state) => {
+      state.sortedList = state.sortedList.map((i) => {
+        const { daysBefore, years } = calculateDaysBefore({
+          ...i,
+        });
+        return { ...i, daysBefore, years };
+      });
+    },
   },
 });
 
-export const { addNewEvent, deleteEvent, setSearchOption, updateEvent } =
-  mainSlice.actions;
+export const {
+  addNewEvent,
+  deleteEvent,
+  setSearchOption,
+  updateEvent,
+  updateDaysBefore,
+} = mainSlice.actions;
 export default mainSlice.reducer;
