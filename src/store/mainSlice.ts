@@ -63,12 +63,13 @@ export const mainSlice = createSlice({
         });
     },
     updateDaysBefore: (state) => {
-      state.sortedList = state.sortedList.map((i) => {
+      state.eventsList = state.eventsList.map((i) => {
         const { daysBefore, years } = calculateDaysBefore({
           ...i,
         });
         return { ...i, daysBefore, years };
       });
+      mainSlice.caseReducers.setSortedList(state);
     },
   },
 });
