@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { FC, useState } from "react";
 import styles from "./Form.module.scss";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import moment from "moment";
@@ -9,14 +9,7 @@ import { IEvent } from "../../../@types/IEvent";
 import { useAppDispatch } from "../../../hooks/redux";
 import { v4 as uuidv4 } from "uuid";
 import range from "lodash/range";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-
-export interface IFormProps {
-  buttonText: string;
-  dispatchName: ActionCreatorWithPayload<IEvent>;
-  eventInfo?: IEvent;
-  setEditMode?: Dispatch<SetStateAction<boolean>>;
-}
+import { IFormProps } from "../../../@types/IFormProps";
 
 const Form: FC<IFormProps> = ({
   buttonText,
@@ -45,7 +38,7 @@ const Form: FC<IFormProps> = ({
         id: eventInfo?.id || uuidv4(),
         type: switcher,
         priority: priority,
-        date: moment(startDate).format("YYYY-MM-DD"),
+        date: moment(startDate).format("YYYY-MM-DD HH:mm"),
         daysBefore: [-1],
         years: -1,
       })
@@ -56,7 +49,7 @@ const Form: FC<IFormProps> = ({
     reset();
   };
   const [startDate, setStartDate] = useState<Date | null>(
-    eventInfo ? new Date(eventInfo.date) : new Date()
+    eventInfo ? new Date(eventInfo.date.replace(" ", "T")) : new Date()
   );
   const [switcher, setSwitcher] = useState<"Event" | "Birthday">(
     eventInfo?.type || "Event"
@@ -109,12 +102,13 @@ const Form: FC<IFormProps> = ({
             onChange={() => setSwitcher("Birthday")}
           />
           Birthday
+          <p>Date of birth</p>
         </label>
       </div>
       <Controller
         name="date"
         control={control}
-        defaultValue={moment(new Date()).format("YYYY-MM-DD")}
+        defaultValue={moment(new Date()).format("YYYY-MM-DD HH:mm")}
         render={() => (
           <DatePicker
             renderCustomHeader={({ date, changeYear, changeMonth }) => (
@@ -147,7 +141,9 @@ const Form: FC<IFormProps> = ({
             selected={startDate}
             onChange={(e) => setStartDate(e)}
             placeholderText="Select date"
-            dateFormat="dd/MM/yyyy"
+            timeInputLabel="Time:"
+            dateFormat="dd/MM/yyyy HH:mm"
+            showTimeInput
           />
         )}
       />

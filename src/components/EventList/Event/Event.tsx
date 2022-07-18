@@ -4,11 +4,7 @@ import { IEvent } from "../../../@types/IEvent";
 import placeholder from "../../../assets/imgPlaceholder.jpeg";
 import { clsx } from "clsx";
 import { useAppDispatch } from "../../../hooks/redux";
-import {
-  deleteEvent,
-  updateDaysBefore,
-  updateEvent,
-} from "../../../store/mainSlice";
+import { deleteEvent, updateEvent } from "../../../store/mainSlice";
 import moment from "moment";
 import Form from "../../AddEvent/Form/Form";
 
@@ -24,7 +20,6 @@ const Event: FC<IEvent> = ({
 }) => {
   const dispatch = useAppDispatch();
   const [editMode, setEditMode] = useState<boolean>(false);
-  setInterval(() => dispatch(updateDaysBefore()), 60000);
   return (
     <>
       {!editMode && (
@@ -46,13 +41,13 @@ const Event: FC<IEvent> = ({
               <button onClick={() => setEditMode(true)}>Edit</button>
               <button onClick={() => dispatch(deleteEvent(id))}>╳</button>
             </div>
-            <div className={styles.type}>{type}</div>
-            <div className={styles.name}>
-              {name} – {moment(date).format("MMMM Do YYYY")}
+            <div className={styles.type}>
+              {type} – {moment(date).format("MMMM Do YYYY, HH:mm")}
             </div>
+            <div className={styles.name}>{name}</div>
             <div className={styles.date}>
               {daysBefore.length > 1
-                ? `${daysBefore[0]}d ${daysBefore[1]}h before`
+                ? `${daysBefore[0]}d ${daysBefore[1]}h ${daysBefore[2]}m before`
                 : daysBefore[0] === 0
                 ? "Today"
                 : "Sorry you're late"}
