@@ -1,14 +1,15 @@
-import styles from "./Event.module.scss";
 import { FC, useState } from "react";
-import { IEvent } from "../../../@types/IEvent";
-import placeholder from "../../../assets/imgPlaceholder.jpeg";
 import { clsx } from "clsx";
-import { useAppDispatch } from "../../../hooks/redux";
-import { deleteEvent, updateEvent } from "../../../store/mainSlice";
 import moment from "moment";
-import Form from "../../AddEvent/Form/Form";
 
-const Event: FC<IEvent> = ({
+import styles from "./Event.module.scss";
+import { IEvent } from "../../../@types";
+import { Form } from "../../AddEvent/Form";
+import { useAppDispatch } from "../../../hooks";
+import placeholder from "../../../assets/imgPlaceholder.jpeg";
+import { deleteEvent, updateEvent } from "../../../store/mainSlice";
+
+export const Event: FC<IEvent> = ({
   image,
   name,
   date,
@@ -80,5 +81,3 @@ const Event: FC<IEvent> = ({
     </>
   );
 };
-
-export default Event;

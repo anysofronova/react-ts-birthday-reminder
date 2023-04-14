@@ -1,9 +1,10 @@
 import { FC, memo } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import Form from "./Form/Form";
+
+import {Form} from "./Form";
 import { addNewEvent } from "../../store/mainSlice";
 
-const AddEvent: FC = memo(() => {
+export const AddEvent: FC = memo(() => {
   return (
     <div className={"container"}>
       <p>Add New Event</p>
@@ -11,5 +12,3 @@ const AddEvent: FC = memo(() => {
     </div>
   );
 });
-
-export default AddEvent;
