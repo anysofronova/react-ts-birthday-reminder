@@ -1,5 +1,6 @@
-import { IEvent } from "../@types/IEvent";
 import moment from "moment";
+
+import { IEvent } from "../@types";
 
 export const calculateDaysBefore = ({ date, type }: IEvent) => {
   const today: Date = new Date();

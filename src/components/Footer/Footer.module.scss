@@ -8,5 +8,9 @@
   color: var(--color-text);
   a {
     color: var(--color-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
   }
 }

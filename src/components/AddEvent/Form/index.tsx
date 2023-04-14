@@ -1,17 +1,17 @@
 import { FC, useState } from "react";
-import styles from "./Form.module.scss";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import moment from "moment";
-import DatePicker from "react-datepicker";
+import range from "lodash/range";
+import { v4 as uuidv4 } from "uuid";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getMonth";
-import { IEvent } from "../../../@types/IEvent";
-import { useAppDispatch } from "../../../hooks/redux";
-import { v4 as uuidv4 } from "uuid";
-import range from "lodash/range";
-import { IFormProps } from "../../../@types/IFormProps";
+import DatePicker from "react-datepicker";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
-const Form: FC<IFormProps> = ({
+import styles from "./Form.module.scss";
+import { useAppDispatch } from "../../../hooks";
+import { IEvent, IFormProps } from "../../../@types";
+
+export const Form: FC<IFormProps> = ({
   buttonText,
   dispatchName,
   eventInfo,
@@ -206,5 +206,3 @@ const Form: FC<IFormProps> = ({
     </form>
   );
 };
-
-export default Form;

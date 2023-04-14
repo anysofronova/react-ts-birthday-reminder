@@ -1,11 +1,12 @@
-import styles from "./EventList.module.scss";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import Event from "./Event/Event";
 import { clsx } from "clsx";
+
+import { Event } from "./Event";
+import styles from "./EventList.module.scss";
 import { setSearchOption } from "../../store/mainSlice";
 import { filters, sorts } from "../../data/FiltersAndSors";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
-const EventList = () => {
+export const EventList = () => {
   const { sortedList, filter, sort } = useAppSelector(
     (state) => state.mainSlice
   );
@@ -47,20 +48,8 @@ const EventList = () => {
       )}
       {sortedList.length < 1 && <h2 className={styles.title}>No Event!</h2>}
       {sortedList.map((i) => (
-        <Event
-          name={i.name}
-          date={i.date}
-          image={i.image}
-          id={i.id}
-          key={i.id}
-          type={i.type}
-          daysBefore={i.daysBefore}
-          years={i.years}
-          priority={i.priority}
-        />
+        <Event {...i} key={i.id} />
       ))}
     </div>
   );
 };
-
-export default EventList;

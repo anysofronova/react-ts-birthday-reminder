@@ -4,6 +4,7 @@
   justify-content: flex-end;
   .switch {
     transition: var(--transition);
+    font-size: 2rem;
     &:hover {
       color: var(--color-primary-variant);
       cursor: pointer;
